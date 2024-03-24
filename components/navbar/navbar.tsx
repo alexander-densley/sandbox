@@ -9,11 +9,20 @@ import {
 	NavbarMenuItem,
 	NavbarMenuToggle,
 } from '@nextui-org/navbar'
+import { Accordion, AccordionItem } from '@nextui-org/accordion'
 import Link from 'next/link'
 import { useState } from 'react'
 
 export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+	const itemClasses = {
+		base: 'p-0',
+		trigger: 'py-0',
+		title: 'text-lg text-[#EA7858] font-semibold',
+		content:
+			'pb-0 text-lg pl-4 text-[#EA7858] font-semibold flex flex-col gap-2',
+	}
 
 	return (
 		<NUINavbar
@@ -37,8 +46,13 @@ export default function Navbar() {
 					</Link>
 				</NavbarItem>
 				<NavbarItem>
+					<Link href='/'>
+						<p className='text-lg text-[#F5F5EE] font-semibold'>Companies</p>
+					</Link>
+				</NavbarItem>
+				<NavbarItem>
 					<Link href='/tarpits' aria-current='page'>
-						<p className='text-[#F5F5EE] text-lg font-semibold'>Tarpits</p>
+						<p className='text-[#F5F5EE] text-lg font-semibold'>Resources</p>
 					</Link>
 				</NavbarItem>
 				<NavbarItem>
@@ -51,11 +65,23 @@ export default function Navbar() {
 				<UserButton />
 			</NavbarContent>
 
-			<NavbarMenu className='bg-[#F5F5EE]'>
+			<NavbarMenu className='bg-[#F5F5EE] border-black border-0.5'>
 				<NavbarMenuItem>
-					<Link href='/'>
+					<Link onClick={() => setIsMenuOpen(false)} href='/'>
 						<p className='text-lg text-[#EA7858] font-semibold'>Home</p>
 					</Link>
+				</NavbarMenuItem>
+				<NavbarMenuItem>
+					<Accordion className='px-0' itemClasses={itemClasses}>
+						<AccordionItem title='Companies'>
+							<Link href='/forum' onClick={() => setIsMenuOpen(false)}>
+								Companies
+							</Link>
+							<Link href='/'>Companies</Link>
+							<Link href='/'>Companies</Link>
+							<Link href='/'>Companies</Link>
+						</AccordionItem>
+					</Accordion>
 				</NavbarMenuItem>
 				<NavbarMenuItem>
 					<Link href='/tarpits' aria-current='page'>
