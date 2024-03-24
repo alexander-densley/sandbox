@@ -36,7 +36,9 @@ export default function Navbar() {
 				className='sm:hidden text-[#F5F5EE]'
 			/>
 			<NavbarBrand className='flex-grow-0 mr-12'>
-				<p className='text-[#F5F5EE] text-lg font-semibold'> sandbox_</p>
+				<Link href='/' className='text-[#F5F5EE] text-lg font-semibold'>
+					sandbox_
+				</Link>
 			</NavbarBrand>
 
 			<NavbarContent className='hidden sm:flex' justify='start'>
