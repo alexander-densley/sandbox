@@ -1,5 +1,5 @@
 'use client'
-import { UserButton } from '@clerk/nextjs'
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import {
 	Navbar as NUINavbar,
 	NavbarBrand,
@@ -62,7 +62,14 @@ export default function Navbar() {
 				</NavbarItem>
 			</NavbarContent>
 			<NavbarContent justify='end'>
-				<UserButton />
+				<SignedIn>
+					<UserButton />
+				</SignedIn>
+				<SignedOut>
+					<Link href='/sign-in'>
+						<p className='text-[#F5F5EE] text-lg font-semibold'>Sign in</p>
+					</Link>
+				</SignedOut>
 			</NavbarContent>
 
 			<NavbarMenu className='bg-[#F5F5EE] border-black border-0.5'>
