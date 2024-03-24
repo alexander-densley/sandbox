@@ -92,7 +92,7 @@ export default function Navbar() {
 			</NavbarContent>
 			<NavbarContent justify='end'>
 				<SignedIn>
-					<UserButton />
+					<UserButton afterSignOutUrl='/' />
 				</SignedIn>
 				<SignedOut>
 					<Link href='/sign-in'>
