@@ -14,7 +14,7 @@ export default function SignInPage() {
 						<a href='/sign-up' className='text-blue-500 underline'>
 							here
 						</a>{' '}
-						to request an account
+						to request an account!
 					</h2>
 				</div>
 				<div className='mt-8'>
