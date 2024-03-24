@@ -41,17 +41,16 @@ export default function Navbar() {
 			isMenuOpen={isMenuOpen}
 			onMenuOpenChange={setIsMenuOpen}
 		>
-			<NavbarMenuToggle
-				aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-				className='sm:hidden text-[#F5F5EE]'
-			/>
 			<Link href='/'>
 				<NavbarBrand className='flex-grow-0 mr-10'>
 					<Image src='/sandbox.png' width={30} height={30} alt='sandbox' />
 					<p className='text-[#F5F5EE] ml-2 text-lg font-semibold'>sandbox_</p>
 				</NavbarBrand>
 			</Link>
-
+			<NavbarMenuToggle
+				aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+				className='sm:hidden text-[#F5F5EE]'
+			/>
 			<NavbarContent className='hidden sm:flex' justify='start'>
 				<NavbarItem>
 					<Link href='/'>
@@ -90,7 +89,7 @@ export default function Navbar() {
 					</Link>
 				</NavbarItem>
 			</NavbarContent>
-			<NavbarContent justify='end'>
+			<NavbarContent justify='end' className='hidden sm:flex'>
 				<SignedIn>
 					<UserButton afterSignOutUrl='/' />
 				</SignedIn>
