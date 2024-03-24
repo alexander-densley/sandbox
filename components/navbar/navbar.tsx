@@ -9,12 +9,23 @@ import {
 	NavbarMenuItem,
 	NavbarMenuToggle,
 } from '@nextui-org/navbar'
+import {
+	Dropdown,
+	DropdownTrigger,
+	DropdownMenu,
+	DropdownSection,
+	DropdownItem,
+} from '@nextui-org/dropdown'
 import { Accordion, AccordionItem } from '@nextui-org/accordion'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button } from '@nextui-org/button'
+import { ChevronDown } from 'lucide-react'
 
 export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const router = useRouter()
 
 	const itemClasses = {
 		base: 'p-0',
@@ -47,11 +58,27 @@ export default function Navbar() {
 						<p className='text-lg text-[#F5F5EE] font-semibold'>Home</p>
 					</Link>
 				</NavbarItem>
-				<NavbarItem>
-					<Link href='/'>
-						<p className='text-lg text-[#F5F5EE] font-semibold'>Companies</p>
-					</Link>
-				</NavbarItem>
+				<Dropdown radius='sm'>
+					<NavbarItem>
+						<DropdownTrigger>
+							<Button
+								variant='light'
+								disableRipple
+								className='text-[#F5F5EE] text-lg font-semibold p-0 gap-0 bg-transparent data-[hover=true]:bg-transparent'
+								endContent={<ChevronDown />}
+							>
+								Companies
+							</Button>
+						</DropdownTrigger>
+					</NavbarItem>
+					<DropdownMenu
+						aria-label='Action event example'
+						onAction={(key) => router.push(key.toString())}
+					>
+						<DropdownItem key='/forum'>Startup Directory</DropdownItem>
+						<DropdownItem key='/tarpits'>Founder Directory </DropdownItem>
+					</DropdownMenu>
+				</Dropdown>
 				<NavbarItem>
 					<Link href='/tarpits' aria-current='page'>
 						<p className='text-[#F5F5EE] text-lg font-semibold'>Resources</p>

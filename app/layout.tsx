@@ -22,7 +22,9 @@ export default function RootLayout({
 			<html lang='en'>
 				<body className={inter.className}>
 					<Navbar />
-					<Providers>{children}</Providers>
+					<Providers>
+						<div className='min-h-[calc(100vh-4rem)]'>{children}</div>
+					</Providers>
 				</body>
 			</html>
 		</ClerkProvider>
