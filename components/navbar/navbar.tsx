@@ -13,7 +13,6 @@ import {
 	Dropdown,
 	DropdownTrigger,
 	DropdownMenu,
-	DropdownSection,
 	DropdownItem,
 } from '@nextui-org/dropdown'
 import { Accordion, AccordionItem } from '@nextui-org/accordion'
@@ -22,7 +21,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@nextui-org/button'
 import { ChevronDown } from 'lucide-react'
-
+import Image from 'next/image'
 export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const router = useRouter()
@@ -46,11 +45,12 @@ export default function Navbar() {
 				aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
 				className='sm:hidden text-[#F5F5EE]'
 			/>
-			<NavbarBrand className='flex-grow-0 mr-12'>
-				<Link href='/' className='text-[#F5F5EE] text-lg font-semibold'>
-					sandbox_
-				</Link>
-			</NavbarBrand>
+			<Link href='/'>
+				<NavbarBrand className='flex-grow-0 mr-10'>
+					<Image src='/sandbox.png' width={30} height={30} alt='sandbox' />
+					<p className='text-[#F5F5EE] ml-2 text-lg font-semibold'>sandbox_</p>
+				</NavbarBrand>
+			</Link>
 
 			<NavbarContent className='hidden sm:flex' justify='start'>
 				<NavbarItem>
