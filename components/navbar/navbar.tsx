@@ -50,7 +50,7 @@ export default function Navbar() {
 			<Link href='/'>
 				<NavbarBrand className='flex-grow-0 mr-10'>
 					<Image src='/sandbox.png' width={30} height={30} alt='sandbox' />
-					<p className='text-[#F5F5EE] ml-2 text-lg font-semibold'>sandbox_</p>
+					<p className='text-[#F5F5EE] ml-3 text-lg font-semibold'>_sandbox</p>
 				</NavbarBrand>
 			</Link>
 			<NavbarMenuToggle
