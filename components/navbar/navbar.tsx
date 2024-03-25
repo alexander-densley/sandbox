@@ -1,5 +1,11 @@
 'use client'
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
+import {
+	SignedIn,
+	SignedOut,
+	SignInButton,
+	SignOutButton,
+	UserButton,
+} from '@clerk/nextjs'
 import {
 	Navbar as NUINavbar,
 	NavbarBrand,
@@ -91,7 +97,28 @@ export default function Navbar() {
 			</NavbarContent>
 			<NavbarContent justify='end' className='hidden sm:flex'>
 				<SignedIn>
-					<UserButton afterSignOutUrl='/' />
+					<Dropdown radius='sm'>
+						<DropdownTrigger>
+							<Button
+								radius='sm'
+								className='bg-[#F5F5EE] text-[#EA7858] text-lg font-semibold'
+							>
+								Account
+							</Button>
+						</DropdownTrigger>
+						<DropdownMenu
+							aria-label='Action event example'
+							onAction={(key) => router.push(key.toString())}
+						>
+							<DropdownItem key='/account'>Manage account</DropdownItem>
+
+							<DropdownItem key='/'>
+								<SignOutButton>
+									<p className='w-full'>Sign out</p>
+								</SignOutButton>
+							</DropdownItem>
+						</DropdownMenu>
+					</Dropdown>
 				</SignedIn>
 				<SignedOut>
 					<Link href='/sign-in'>
@@ -127,6 +154,18 @@ export default function Navbar() {
 					<Link href='/forum'>
 						<p className='text-[#EA7858] text-lg font-semibold'>Forum</p>
 					</Link>
+				</NavbarMenuItem>
+				<NavbarMenuItem>
+					<SignedIn>
+						<Link href='/account'>
+							<p className='text-[#EA7858] text-lg font-semibold'>Account</p>
+						</Link>
+					</SignedIn>
+					<SignedOut>
+						<Link href='/sign-in'>
+							<p className='text-[#EA7858] text-lg font-semibold'>Sign in</p>
+						</Link>
+					</SignedOut>
 				</NavbarMenuItem>
 			</NavbarMenu>
 		</NUINavbar>
