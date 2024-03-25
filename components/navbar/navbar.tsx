@@ -1,11 +1,5 @@
 'use client'
-import {
-	SignedIn,
-	SignedOut,
-	SignInButton,
-	SignOutButton,
-	UserButton,
-} from '@clerk/nextjs'
+import { SignedIn, SignedOut, SignOutButton } from '@clerk/nextjs'
 import {
 	Navbar as NUINavbar,
 	NavbarBrand,
@@ -27,7 +21,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@nextui-org/button'
 import { ChevronDown } from 'lucide-react'
-import Image from 'next/image'
+import { Image } from '@nextui-org/image'
 export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const router = useRouter()
@@ -35,9 +29,9 @@ export default function Navbar() {
 	const itemClasses = {
 		base: 'p-0',
 		trigger: 'py-0',
-		title: 'text-lg text-[#EA7858] font-semibold',
+		title: 'text-md text-[#EA7858] font-semibold',
 		content:
-			'pb-0 text-lg pl-4 text-[#EA7858] font-semibold flex flex-col gap-2',
+			'pb-0 text-md pl-4 text-[#EA7858] font-semibold flex flex-col gap-2',
 	}
 
 	return (
@@ -49,7 +43,13 @@ export default function Navbar() {
 		>
 			<Link href='/'>
 				<NavbarBrand className='flex-grow-0 mr-10'>
-					<Image src='/sandbox.png' width={30} height={30} alt='sandbox' />
+					<Image
+						src='/sandbox.png'
+						radius='none'
+						width={30}
+						height={30}
+						alt='sandbox'
+					/>
 					<p className='text-[#F5F5EE] ml-4 text-lg font-semibold'>_sandbox</p>
 				</NavbarBrand>
 			</Link>
@@ -60,16 +60,16 @@ export default function Navbar() {
 			<NavbarContent className='hidden sm:flex' justify='start'>
 				<NavbarItem>
 					<Link href='/'>
-						<p className='text-lg text-[#F5F5EE] font-semibold'>Home</p>
+						<p className='text-md text-[#F5F5EE] font-semibold'>Home</p>
 					</Link>
 				</NavbarItem>
-				<Dropdown radius='sm'>
+				<Dropdown radius='sm' disableAnimation>
 					<NavbarItem>
 						<DropdownTrigger>
 							<Button
 								variant='light'
 								disableRipple
-								className='text-[#F5F5EE] text-lg font-semibold p-0 gap-0 bg-transparent data-[hover=true]:bg-transparent'
+								className='text-[#F5F5EE] text-md font-semibold p-0 gap-0 bg-transparent data-[hover=true]:bg-transparent'
 								endContent={<ChevronDown />}
 							>
 								Companies
@@ -84,14 +84,30 @@ export default function Navbar() {
 						<DropdownItem key='/tarpits'>Founder Directory </DropdownItem>
 					</DropdownMenu>
 				</Dropdown>
-				<NavbarItem>
-					<Link href='/tarpits' aria-current='page'>
-						<p className='text-[#F5F5EE] text-lg font-semibold'>Resources</p>
-					</Link>
-				</NavbarItem>
+				<Dropdown radius='sm' disableAnimation>
+					<NavbarItem>
+						<DropdownTrigger>
+							<Button
+								variant='light'
+								disableRipple
+								className='text-[#F5F5EE] text-md font-semibold p-0 gap-0 bg-transparent data-[hover=true]:bg-transparent'
+								endContent={<ChevronDown />}
+							>
+								Resources
+							</Button>
+						</DropdownTrigger>
+					</NavbarItem>
+					<DropdownMenu
+						aria-label='Action event example'
+						onAction={(key) => router.push(key.toString())}
+					>
+						<DropdownItem key='/forum'>Startup Directory</DropdownItem>
+						<DropdownItem key='/tarpits'>Founder Directory </DropdownItem>
+					</DropdownMenu>
+				</Dropdown>
 				<NavbarItem>
 					<Link href='/forum'>
-						<p className='text-[#F5F5EE] text-lg font-semibold'>Forum</p>
+						<p className='text-[#F5F5EE] text-md font-semibold'>Forum</p>
 					</Link>
 				</NavbarItem>
 			</NavbarContent>
@@ -100,8 +116,10 @@ export default function Navbar() {
 					<Dropdown radius='sm'>
 						<DropdownTrigger>
 							<Button
+								disableRipple
 								radius='sm'
-								className='bg-[#F5F5EE] text-[#EA7858] text-lg font-semibold'
+								size='sm'
+								className=' bg-[#EA7858] text-[#F5F5EE] text-md font-semibold'
 							>
 								Account
 							</Button>
@@ -122,7 +140,7 @@ export default function Navbar() {
 				</SignedIn>
 				<SignedOut>
 					<Link href='/sign-in'>
-						<p className='text-[#F5F5EE] text-lg font-semibold'>Sign in</p>
+						<p className='text-[#F5F5EE] text-md font-semibold'>Sign in</p>
 					</Link>
 				</SignedOut>
 			</NavbarContent>
@@ -130,7 +148,7 @@ export default function Navbar() {
 			<NavbarMenu className='bg-[#F5F5EE] border-black border-0.5'>
 				<NavbarMenuItem>
 					<Link onClick={() => setIsMenuOpen(false)} href='/'>
-						<p className='text-lg text-[#EA7858] font-semibold'>Home</p>
+						<p className='text-md text-[#EA7858] font-semibold'>Home</p>
 					</Link>
 				</NavbarMenuItem>
 				<NavbarMenuItem>
@@ -147,28 +165,28 @@ export default function Navbar() {
 				</NavbarMenuItem>
 				<NavbarMenuItem>
 					<Link href='/tarpits' aria-current='page'>
-						<p className='text-[#EA7858] text-lg font-semibold'>Tarpits</p>
+						<p className='text-[#EA7858] text-md font-semibold'>Tarpits</p>
 					</Link>
 				</NavbarMenuItem>
 				<NavbarMenuItem>
 					<Link href='/forum'>
-						<p className='text-[#EA7858] text-lg font-semibold'>Forum</p>
+						<p className='text-[#EA7858] text-md font-semibold'>Forum</p>
 					</Link>
 				</NavbarMenuItem>
 				<NavbarMenuItem>
 					<SignedIn>
 						<Link href='/account'>
-							<p className='text-[#EA7858] text-lg font-semibold'>Account</p>
+							<p className='text-[#EA7858] text-md font-semibold'>Account</p>
 						</Link>
 						<SignOutButton>
-							<p className='text-[#EA7858] mt-2 text-lg font-semibold'>
+							<p className='text-[#EA7858] mt-2 text-md font-semibold'>
 								Sign out
 							</p>
 						</SignOutButton>
 					</SignedIn>
 					<SignedOut>
 						<Link href='/sign-in'>
-							<p className='text-[#EA7858] text-lg font-semibold'>Sign in</p>
+							<p className='text-[#EA7858] text-md font-semibold'>Sign in</p>
 						</Link>
 					</SignedOut>
 				</NavbarMenuItem>
