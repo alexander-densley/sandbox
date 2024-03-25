@@ -160,6 +160,11 @@ export default function Navbar() {
 						<Link href='/account'>
 							<p className='text-[#EA7858] text-lg font-semibold'>Account</p>
 						</Link>
+						<SignOutButton>
+							<p className='text-[#EA7858] mt-2 text-lg font-semibold'>
+								Sign out
+							</p>
+						</SignOutButton>
 					</SignedIn>
 					<SignedOut>
 						<Link href='/sign-in'>
